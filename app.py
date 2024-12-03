@@ -4,6 +4,7 @@ from flask_cors import CORS
 from result import result_bp, default_result_bp
 from user_actions import user_actions_bp
 from inference import inference_bp
+from data_resolver import data_resolver_bp
 
 # APP name definition
 app = Flask(__name__)
@@ -21,6 +22,9 @@ app.register_blueprint(default_result_bp)
 app.register_blueprint(user_actions_bp)
 ## invoke inference
 app.register_blueprint(inference_bp)
+
+##
+app.register_blueprint(data_resolver_bp)
 
 #EOL
 

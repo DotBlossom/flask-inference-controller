@@ -19,3 +19,4 @@ requests==2.32.3
 rsa==4.9
 urllib3==2.2.3
 Werkzeug==3.0.4
+pymongo

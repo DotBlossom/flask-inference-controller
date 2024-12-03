@@ -1,0 +1,35 @@
+from flask import Flask
+from flask_cors import CORS
+
+from result import result_bp
+from user_actions import user_actions_bp
+from inference import inference_bp
+
+# APP name definition
+app = Flask(__name__)
+
+# CORS Allowed All Origins
+CORS(app)
+
+
+#app.router
+
+## return Prefernece ids to User table
+app.register_blueprint(result_bp)
+## get user - product id in user Actions
+app.register_blueprint(user_actions_bp)
+## invoke inference
+app.register_blueprint(inference_bp)
+
+#EOL
+
+# ECS HealthChecker Router
+@app.route('/')
+def home():
+    
+    return 'healthy';
+
+
+# allowed all , container port : 5050
+if __name__ == '__main__':  
+   app.run('0.0.0.0',port=5050,debug=True)

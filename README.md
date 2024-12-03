@@ -1,0 +1,1 @@
+## atlas에 default db colloection 모두 연동

@@ -25,7 +25,6 @@ app.register_blueprint(inference_bp)
 
 ##
 app.register_blueprint(data_resolver_bp)
-
 #EOL
 
 # ECS HealthChecker Router

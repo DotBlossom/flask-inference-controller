@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-from result import result_bp
+from result import result_bp, default_result_bp
 from user_actions import user_actions_bp
 from inference import inference_bp
 
@@ -16,6 +16,7 @@ CORS(app)
 
 ## return Prefernece ids to User table
 app.register_blueprint(result_bp)
+app.register_blueprint(default_result_bp)
 ## get user - product id in user Actions
 app.register_blueprint(user_actions_bp)
 ## invoke inference

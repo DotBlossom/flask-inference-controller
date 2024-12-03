@@ -7,7 +7,6 @@ data_resolver_bp = Blueprint('data_resolver', __name__)
 
 load_dotenv()
 MONGO_URL = os.getenv('MONGO_URL')
-
 # MongoDB 클라이언트 생성
 client = pymongo.MongoClient(MONGO_URL)
 

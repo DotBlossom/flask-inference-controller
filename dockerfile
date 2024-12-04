@@ -8,6 +8,7 @@ FROM python:3.9-slim
 # 환경 변수 설정
 #ENV MONGO_URL=$MONGO_URL
 
+
 WORKDIR /app
 
 COPY requirements.txt .
@@ -15,6 +16,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["flask", "run", "--host=0.0.0.0"] 
-
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5050"] 
 

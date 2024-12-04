@@ -3,7 +3,7 @@ import pymongo
 from dotenv import load_dotenv
 import os
 from apscheduler.schedulers.background import BackgroundScheduler
-import app
+
 
 # inference를 스케줄로 call 해도 됨. instant도 만들어.
 
@@ -164,6 +164,7 @@ def get_not_apply_yet(userId):
 # 스케줄러 생성
 scheduler = BackgroundScheduler()
 
+'''
 # 애플리케이션 시작 시 스케줄러 초기화 및 작업 추가
 @app.before_first_request
 def initialize_scheduler():
@@ -177,7 +178,7 @@ def initialize_scheduler():
         )
         scheduler.start()
 
-
+'''
 # 스케줄러 실행 API 엔드포인트, test용
 @user_actions_bp.route('/ai-api/scheduler/run', methods=['POST'])
 def run_scheduler():

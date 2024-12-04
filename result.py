@@ -40,8 +40,8 @@ def result_preferences(userId):
 
     except Exception as e:
         return jsonify({'message': str(e)}), 500
-    
-    
+
+
 @default_result_bp.route('/ai-api/preference/default', methods=['GET'])
 def default_result_preferences():
 

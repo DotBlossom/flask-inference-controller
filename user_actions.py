@@ -26,6 +26,13 @@ db = client['user_actions']  # 'user_actions' 데이터베이스 가져오기
 collection = db['user_purchases']  # 'user_purchases' 컬렉션 가져오기
 not_apply_collection = db['not_apply_yet']  # 'not_apply_yet' 컬렉션 가져오기
 
+
+# 'service_metadata' 데이터베이스 가져오기 (없으면 생성)
+db_metadata = client.get_database('service_metadata')
+
+# 'user_action_metadata' 컬렉션 가져오기 (없으면 생성)
+collection_metadata = db_metadata.get_collection('user_action_metadata')
+
 @user_actions_bp.route('/ai-api/user/action/<int:userId>', methods=['POST']) 
 def get_user_actions(userId):
 
@@ -53,9 +60,20 @@ def get_user_actions(userId):
                 {'userId': userId},
                 {'$addToSet': {'productIds': {'$each': productIds}}}
             )
+            
         else:
             # userId가 없는 경우, 새로운 document 생성
             collection.insert_one({'userId': userId, 'productIds': productIds})
+        
+        
+        # productId와 count를 user_action_metadata 컬렉션에 업데이트
+        for productId in productIds:
+            collection_metadata.update_one(
+                {'productId': productId},
+                {'$inc': {'count': 1}},
+                upsert=True  # document가 없으면 생성
+            )
+
         
         return jsonify({
             "productIds" : productIds,

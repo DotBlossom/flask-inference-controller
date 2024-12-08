@@ -31,7 +31,7 @@ app.register_blueprint(data_resolver_bp)
 @app.route('/')
 def home():
     
-    return 'healthy';
+    return 'healthy'
 
 
 # allowed all , container port : 5050
